@@ -29,7 +29,7 @@ class Item:
         if name in self.all:
             raise ValueError('Имя уже есть в списке')
 
-        Item.all.append(self.name)
+        Item.all.append(name)
 
     def calculate_total_price(self) -> float:
         """
