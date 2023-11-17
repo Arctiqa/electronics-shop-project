@@ -2,16 +2,21 @@ from src.item import Item
 import pytest
 
 
-def test_calculate_total_price():
+@pytest.fixture()
+def clear_class_items():
+    Item.all = []
+
+
+def test_calculate_total_price(clear_class_items):
     item1 = Item('item_name1', 30, 20)
     item2 = Item('item_name2', 35, 2)
     assert item1.calculate_total_price() == 600
     assert item2.calculate_total_price() == 70
 
 
-def test_apply_discount():
-    item1 = Item('item_name3', 100, 50)
-    item2 = Item('item_name4', 40, 50)
+def test_apply_discount(clear_class_items):
+    item1 = Item('item_name1', 100, 50)
+    item2 = Item('item_name2', 40, 50)
     item1.apply_discount()
     item2.apply_discount()
     assert item1.price == 100 * item1.pay_rate
