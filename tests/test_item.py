@@ -52,3 +52,9 @@ def test_name():
     item1 = Item('Смартфон', 10500, 9)
     item1.name = 'СуперСмартфон'
     assert item1.name == 'СуперСмарт'
+
+
+def test_repr():
+    item = Item('Смартфон', 105000, 6)
+    assert repr(item) == "Item('Смартфон', '105000', '6')"
+    assert str(item) == "'Смартфон', '105000', '6'"
