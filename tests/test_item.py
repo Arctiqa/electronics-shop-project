@@ -56,5 +56,5 @@ def test_name():
 
 def test_repr():
     item = Item('Смартфон', 105000, 6)
-    assert repr(item) == "Item('Смартфон', '105000', '6')"
-    assert str(item) == "'Смартфон', '105000', '6'"
+    assert repr(item) == "Item('Смартфон', 105000, 6)"
+    assert str(item) == "Смартфон"
