@@ -23,21 +23,3 @@ class Keyboard(Item, Mixin):
     def language(self, value):
         if value in ['EN', 'RU']:
             self._language = value
-
-
-
-kb = Keyboard('Dark Project KD87A', 9600, 5)
-str(kb.language)
-print(kb.language)
-kb.change_lang()
-print(kb.language)
-print(str(kb))
-kb.change_lang()
-print(kb.language)
-kb.change_lang()
-print(kb.language)
-kb.change_lang()
-print(kb.language)
-kb.language = 'CH'
-print(kb.language)
-print(kb.language, 'p')
