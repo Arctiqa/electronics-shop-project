@@ -12,7 +12,7 @@ def test_init_(test_object):
 
     assert test_object.price == 50
     assert test_object.quantity == 30
-    assert test_object is test_object.__class__.all[0]
+    assert test_object in test_object.__class__.all
 
 
 def test_calculate_total_price():

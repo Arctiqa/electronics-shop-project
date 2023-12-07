@@ -16,6 +16,7 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
+        super().__init__()
         self.__name = name
         self.price = price
         self.quantity = quantity
@@ -31,6 +32,12 @@ class Item:
     @property
     def name(self):
         return self.__name
+
+    def __add__(self, other):
+        if not isinstance(other, Item):
+            raise ValueError('Error')
+        else:
+            return self.quantity + other.quantity
 
     @name.setter
     def name(self, value):
