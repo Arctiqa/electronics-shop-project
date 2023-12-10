@@ -1,10 +1,10 @@
 from src.item import Item
 
 if __name__ == '__main__':
-    # Файл items.csv отсутствует.
-    Item.instantiate_from_csv()
+    # Файл broken_csv.csv отсутствует.
+    Item.instantiate_from_csv('af')
     # FileNotFoundError: Отсутствует файл item.csv
 
-    # В файле items.csv удалена последняя колонка.
-    Item.instantiate_from_csv()
+    # В файле broken_csv.csv удалена последняя колонка.
+    # Item.instantiate_from_csv('../tests/broken_csv.csv')
     # InstantiateCSVError: Файл item.csv поврежден
