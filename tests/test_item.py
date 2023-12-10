@@ -1,10 +1,25 @@
-from src.item import Item
+import os
+
+from src.item import Item, InstantiateCSVError
 import pytest
 
 
 @pytest.fixture
 def test_object():
     return Item('Смартфон', 50, 30)
+
+
+def test_instantiate_from_csv():
+    path = os.path.join(os.path.dirname(__file__), '..', 'src', 'items.csv')
+    Item.instantiate_from_csv(path)
+    print(Item.all)
+    assert Item.all[-5].name == 'Смартфон'
+    assert Item.all[-5].price == 100.0
+    assert Item.all[-5].quantity == 1
+
+    assert Item.all[-1].name == 'Клавиатура'
+    assert Item.all[-1].price == 75.0
+    assert Item.all[-1].quantity == 5
 
 
 def test_init_(test_object):
@@ -31,18 +46,6 @@ def test_apply_discount():
     assert item2.price == 40 * item1.pay_rate
 
 
-def test_instantiate_from_csv():
-    Item.instantiate_from_csv('items.csv')
-
-    assert Item.all[-5].name == 'Смартфон'
-    assert Item.all[-5].price == '100'
-    assert Item.all[-5].quantity == '1'
-
-    assert Item.all[-1].name == 'Клавиатура'
-    assert Item.all[-1].price == '75'
-    assert Item.all[-1].quantity == '5'
-
-
 def test_string_to_number():
     assert Item.string_to_number('7') == 7
     assert Item.string_to_number('7.8') == 7
@@ -58,3 +61,13 @@ def test_repr():
     item = Item('Смартфон', 105000, 6)
     assert repr(item) == "Item('Смартфон', 105000, 6)"
     assert str(item) == "Смартфон"
+
+
+def csv_not_found():
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv('not_found')
+
+
+def instantiate_csv_error():
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv('broken_csv.csv')
