@@ -60,7 +60,7 @@ class Item:
                 name, price, quantity = row['name'], row['price'], row['quantity']
                 Item(name, float(price), int(quantity))
         except FileNotFoundError:
-            raise f'Файл {csv_file} отсутствует'
+            raise FileNotFoundError(f'Файл {csv_file} отсутствует')
 
             # for row in reader:
             #     name, price, quantity = row.values()
